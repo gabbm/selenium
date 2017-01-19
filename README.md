@@ -9,19 +9,19 @@ After the installation you could execute the Selenium tests created with Seleniu
 You must use the JUnit 4 libraries for the Selenium tests.
 
 You can find an example into tests folder:
-	- TestSelenium.java -> Selenium test
-	- TestSeleniumRunner -> Main class to run the TestSelenium class
+* TestSelenium.java -> Selenium test
+* TestSeleniumRunner -> Main class to run the TestSelenium class
 
 to run them you should execute:
-	- Compile Java classes:
-		- javac -classpath ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSeleniumRunner.java
-		- javac -classpath ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSelenium.java
-	- Execute Java classes:
-		- java -cp ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSeleniumRunner
+* Compile Java classes:
+	* javac -classpath ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSeleniumRunner.java
+	* javac -classpath ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSelenium.java
+* Execute Java classes:
+	* java -cp ".:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/*:/opt/selenium/selenium-java-2.53.1/selenium-2.53.1/libs/*" TestSeleniumRunner
 
 You would obtain an output like this:
-`1 XSELINUXs still allocated at reset`
-SCREEN: 0 objects of 176 bytes = 0 total bytes 0 private allocs
+`1 XSELINUXs still allocated at reset'    
+'SCREEN: 0 objects of 176 bytes = 0 total bytes 0 private allocs`  
 DEVICE: 0 objects of 96 bytes = 0 total bytes 0 private allocs
 CLIENT: 0 objects of 160 bytes = 0 total bytes 0 private allocs
 WINDOW: 0 objects of 48 bytes = 0 total bytes 0 private allocs
