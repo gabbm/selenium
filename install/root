@@ -1,0 +1,20 @@
+# sourced by /etc/init.d/selenium
+### where to find java and the selenium-server.jar file
+SELENIUM_JAVA_BIN=/usr/bin/java
+SELENIUM_JAR=/opt/selenium/selenium-server-standalone-2.53.1.jar
+
+### selenium requires xvfb to run as a "headless daemon"
+SELENIUM_XVFB_BIN=/usr/bin/xvfb-run
+### tcp port for selenium to listen on
+### NOTE: must be greater than 1024
+SELENIUM_PORT=4444
+### user/group to run selenium server as
+SELENIUM_USER=root
+SELENIUM_GROUP=root
+### additional options to pass to selenium-server.jar on the command line
+SELENIUM_OPT=""
+### turn on logging
+SELENIUM_LOGGING=1
+### if logging is on, log browser interactions
+SELENIUM_LOG_BROWSER=1
+
