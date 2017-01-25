@@ -59,3 +59,11 @@ Test successful ? true
 ```
 	
 the last two lines are System.out from TestSeleniumRunner. If there had been errors, it would have shown you which kind of problem it would have been.
+
+IMPORTANT!!!
+Some times the variable DISPLAY is not configured on Linux, due to this reason firefox can't launch and the tests will fail.
+
+To solve this, you should export the DISPLAY 0:
+	```
+	export DISPLAY=:0
+	```
