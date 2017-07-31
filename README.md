@@ -65,5 +65,5 @@ Some times the variable DISPLAY is not configured on Linux, due to this reason f
 
 To solve this, you should export the DISPLAY 0:
 	```
-	export DISPLAY=:0
+	Xvfb :0 & export DISPLAY=:0
 	```
