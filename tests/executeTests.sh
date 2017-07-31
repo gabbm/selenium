@@ -3,7 +3,7 @@
 current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 
 # Is necessary to configure the DISPLAY for Firefox
-export DISPLAY=:0
+Xvfb :0 & export DISPLAY=:0
 
 echo "Accessing CaixaImpulse tests folder"
 cd /opt/selenium/tests/caixaimpulse
