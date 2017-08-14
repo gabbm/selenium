@@ -21,7 +21,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.Keys;
 
-public class TestSelenium {
+public class TestCaixaImpulse {
 	private boolean acceptNextAlert = true;
 	private DesiredCapabilities desiredCapabilities;
 	private LoggingPreferences logs;
@@ -44,12 +44,17 @@ public class TestSelenium {
 	
 		driver = new FirefoxDriver(desiredCapabilities);
 		baseUrl = "https://www.caixaimpulse.com";
+		
+		// Set and maximize window
+		driver.manage().window().setSize(new Dimension(1024, 768));
+		driver.manage().window().maximize();
+		
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Test
-	public void testUntitled() throws Exception {
+	public void testCaixaImpulse() throws Exception {
 		Actions action;
 		boolean error = false;
 		Logs logs;
@@ -60,7 +65,7 @@ public class TestSelenium {
 		WebElement clickElement;
 
 		action = new Actions(driver);
-		wait = new WebDriverWait(driver, 10);
+		wait = new WebDriverWait(driver, 20);
 
 		// Test case 1 ::  Access to main page
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 1 :: Access to main page");
@@ -75,18 +80,19 @@ public class TestSelenium {
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'/programme?program_id=22450')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//section[contains(@class,'columnsOverview')]/div[contains(@class,'secondColumn')]/div[contains(@class,'listSecondColumn')]/ul[contains(@class,'secondList')]/li[contains(.,'Prototyping and design')]"))){
+		if(!isElementPresent(By.xpath("//section[contains(@class,'columnsOverview')]/div[contains(@class,'secondColumn')]/div[contains(@class,'listSecondColumn')]/ul[contains(@class,'secondList')]/li[contains(.,'Prototyping and design')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'Prototyping and design' not found in 'Programme & Call > Overview' section");
 			error = true;
 		}
-
+		
 		// Test case 3 :: Access to "Programme & Call >  Call for projects" section and check for image "Call-Requirement-2"
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 3 :: Access to 'Programme & Call > Call for projects' section and check li with 'Call-Requirement-2' value");
-		referer = driver.getCurrentUrl();
+		referer = driver.getCurrentUrl();		
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/programme?program_id=22450&program_section=CALL']")));
-		moveToElementAndClickIt(element);
+		// We are using JavaScript executor due to "Element is not clickable at point" error
+		clickElementThroughJavascript(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'container')]/div[contains(@class,'row requerimentsCall')]/div[contains(@class,'imgRequeriments')]/img[contains(@src,'Call-Requirement-2')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'container')]/div[contains(@class,'row requerimentsCall')]/div[contains(@class,'imgRequeriments')]/img[contains(@src,'Call-Requirement-2')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Image 'Call-Requirement-2' not found in 'Programme & Call > Call for projects' section");
 			error = true;
 		}
@@ -97,7 +103,7 @@ public class TestSelenium {
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'&program_section=PROJECTS')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'row blockThreeBoxIcon')]/div[contains(@class, 'span4 singleBlockThreeBoxIcon')]/a/h3[contains(., 'CerviScan')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'row blockThreeBoxIcon')]/div[contains(@class, 'span4 singleBlockThreeBoxIcon')]/a/h3[contains(., 'CerviScan')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'CerviScan' not found in 'Programme & Call > Selected projects' section");
 			error = true;
 		}
@@ -108,7 +114,7 @@ public class TestSelenium {
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'/projects')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'row blockThreeBoxIcon')]/div[contains(@class,'span4 singleBlockThreeBoxIcon')]/a/h3[contains(.,'Novel leukemia therapy')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'blockThreeBoxIcon')]/div[contains(@class, 'singleBlockThreeBoxIcon')]/a/div[contains(@class,'project-title-container')]/h3[contains(.,'Novel leukemia therapy')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'Novel leukemia therapy' not found in 'Projects' section");
 			error = true;
 		}
@@ -120,7 +126,7 @@ public class TestSelenium {
 		// Can't click the element due to an overlapped div
 		driver.get(element.getAttribute("href"));
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//section[contains(@class,'blockThreeColumn')]/div[contains(@class,'container')]/div[contains(@class,'span3 xs-span12 leftBlock')]/ul/li[contains(@class,'imgLiUlFixa')]/a/img[contains(@src,'logo+centro.png')]"))){
+		if(!isElementPresent(By.xpath("//section[contains(@class,'blockThreeColumn')]/div[contains(@class,'container')]/div[contains(@class,'span3 xs-span12 leftBlock')]/ul/li[contains(@class,'imgLiUlFixa')]/a/img[contains(@src,'logo+centro.png')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Image 'logo+centro.png' not found in 'Novel leukemia therapy' project detail");
 			error = true;
 		}
@@ -131,14 +137,16 @@ public class TestSelenium {
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'/community')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'blockHecagon')]/div[contains(@class, 'hexagon')]/div[contains(@class, 'overflow1Hexagon')]/div[contains(@class, 'overflow2Hexagon')]/div[contains(@class, 'overflow3Hexagon')]/div[contains(@class, 'genericHexagon')]/div[contains(@class, 'txtImageHexagonal')]/p[contains(., 'Eduardo Rocon')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'blockHecagon')]/div[contains(@class, 'hexagon')]/div[contains(@class, 'overflow1Hexagon')]/div[contains(@class, 'overflow2Hexagon')]/div[contains(@class, 'overflow3Hexagon')]/div[contains(@class, 'genericHexagon')]/div[contains(@class, 'txtImageHexagonal')]/p[contains(., 'Eduardo Rocon')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'Eduardo Rocon' not found in 'Community > Participants' section");
 			error = true;
 		}
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'container')]/ul[contains(@class, 'nav nav-tabs')]/li/a[contains(@href, '#mentors')]")));
-		moveToElementAndClickIt(element);
+		element = driver.findElement(By.xpath("//div[contains(@id, 'community-filters')]/div[contains(@class, 'project-filter-content')]/div[contains(@class, 'filter')]/div[contains(@class, 'mCustomScrollbar')]/div[contains(@class, 'mCustomScrollBox')]/div[contains(@class, 'mCSB_container')]/div[contains(@class, 'span12')]/label[contains(@class, 'filter-checkbox')]/input[@value='21547']"));
+		// We are using JavaScript executor due to "Timed out after 20 seconds waiting for element to be clickable" error
+		clickElementThroughJavascript(element);
+		//moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'blockHecagon')]/div[contains(@class, 'hexagon')]/div[contains(@class, 'overflow1Hexagon')]/div[contains(@class, 'overflow2Hexagon')]/div[contains(@class, 'overflow3Hexagon')]/div[contains(@class, 'genericHexagon')]/div[contains(@class, 'txtImageHexagonal')]/p[contains(., 'Roger Gomis')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'blockHecagon')]/div[contains(@class, 'hexagon')]/div[contains(@class, 'overflow1Hexagon')]/div[contains(@class, 'overflow2Hexagon')]/div[contains(@class, 'overflow3Hexagon')]/div[contains(@class, 'genericHexagon')]/div[contains(@class, 'txtImageHexagonal')]/p[contains(., 'Roger Gomis')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'Roger Gomis' not found in 'Community > Mentors' section");
 			error = true;
 		}
@@ -149,11 +157,11 @@ public class TestSelenium {
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'/news-events')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'span4 xs-span12 blockNews events')]/div[contains(@class, 'datsNews')]/a/p/span[contains(., 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'events')]/div[contains(@class, 'datsNews')]/a/p/span[contains(., 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs' not found in 'News & events' section");
 			error = true;
 		}
-		if(!isElementPresent(By.xpath("//div[contains(@class, 'span4 xs-span12 blockNews news')]/div[contains(@class, 'datsNews')]/a/p/span[contains(., 'The 2016 CaixaImpulse Training Programme starts!')]"))){
+		if(!isElementPresent(By.xpath("//div[contains(@class, 'news')]/div[contains(@class, 'datsNews')]/a/p/span[contains(., 'The 2016 CaixaImpulse Training Programme starts!')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'The 2016 CaixaImpulse Training Programme starts!' not found in 'News & events' section");
 			error = true;
 		}
@@ -161,11 +169,11 @@ public class TestSelenium {
 		// Test case 9 :: Access to "The AEEC organises the 4th National Congress of Scientific Entrepreneurs" event detail and check for an element with "CosmoCaixa Barcelona, Barcelona" value
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 9 :: Access to 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs' event detail and check for an element with 'CosmoCaixa Barcelona, Barcelona' value");
 		referer = driver.getCurrentUrl();
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'span4 xs-span12 blockNews events')]/div[contains(@class, 'datsNews')]/a[contains(@href, '/event/55611')]")));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'events')]/div[contains(@class, 'datsNews')]/a[contains(@href, '/event/55611')]")));
 		// Can't click the element due to an overlapped div
 		driver.get(element.getAttribute("href"));
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//section[contains(@class, 'blockThreeColumn')]/div[contains(@class, 'container')]/div[contains(@class, 'span3 xs-span12 leftBlock')]/ul/li[contains(., 'CosmoCaixa Barcelona, Barcelona')]"))){
+		if(!isElementPresent(By.xpath("//section[contains(@class, 'blockThreeColumn')]/div[contains(@class, 'container')]/div[contains(@class, 'span3 xs-span12 leftBlock')]/ul/li[contains(., 'CosmoCaixa Barcelona, Barcelona')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'CosmoCaixa Barcelona, Barcelona' not found in 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs' event detail");
 			error = true;
 		}
@@ -175,20 +183,25 @@ public class TestSelenium {
 		referer = driver.getCurrentUrl();
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, 'news-events')]")));
 		moveToElementAndClickIt(element);
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'span4 xs-span12 blockNews news')]/div[contains(@class, 'datsNews')]/a[contains(@href, '/news/55552')]")));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'news')]/div[contains(@class, 'datsNews')]/a[contains(@href, '/news/55552')]")));
 		// Can't click the element due to an overlapped div
 		driver.get(element.getAttribute("href"));
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//section[contains(@class, 'blockThreeColumn')]/div[contains(@class, 'container')]/div[contains(@class, 'span3 xs-span12 leftBlock')]/ul/li[contains(., 'January 05, 2017')]"))){
+		if(!isElementPresent(By.xpath("//section[contains(@class, 'blockThreeColumn')]/div[contains(@class, 'container')]/div[contains(@class, 'span3 xs-span12 leftBlock')]/ul/li[contains(., 'January 05, 2017')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Element 'January 05, 2017' not found in 'The 2016 CaixaImpulse Training Programme starts!' news detail");
 			error = true;
 		}
 
+		/*
+		 * It is disabled for now
+		 *
 		// Test case 11 :: Access to "Apply" section
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 11 :: Access to 'Apply' section");
 		referer = driver.getCurrentUrl();
 		driver.findElement(By.xpath("//a[contains(@href,'/Convocatorias/login')]")).click();	
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
+		*/
+		
 		//extractLogs();
 		
 		// Validate if there are some errors
@@ -209,6 +222,19 @@ public class TestSelenium {
 			driver.findElement(by);
 			return true;
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			
+			return false;
+		}
+	}
+	
+	private boolean isElementPresent(By by, WebDriverWait wait) {
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(by));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
 			return false;
 		}
 	}
@@ -220,11 +246,18 @@ public class TestSelenium {
 		action.moveToElement(element).click().build().perform();
 	}
 
+	private void clickElementThroughJavascript(WebElement element){
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click()", element);
+	}
+	
 	private boolean isAlertPresent() {
 		try {
 		driver.switchTo().alert();
 			return true;
 		} catch (NoAlertPresentException e) {
+			e.printStackTrace();
+			
 			return false;
 		}
 	}
@@ -233,11 +266,13 @@ public class TestSelenium {
 		try {
 			Alert alert = driver.switchTo().alert();
 			String alertText = alert.getText();
+			
 			if (acceptNextAlert) {
 				alert.accept();
 			} else {
 				alert.dismiss();
 			}
+			
 			return alertText;
 		} finally {
 			acceptNextAlert = true;
