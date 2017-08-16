@@ -115,10 +115,10 @@ public class TestBecaris {
 		// Test case 5 :: Access to "Activitats" section and check for javascript calendar visible
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 5 ::  Access to 'Activitats' section and check for javascript calendar visible");
 		referer = driver.getCurrentUrl();
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'main-nav')]/ul[contains(@class,'nav')]/li[contains(@class,'btn_becari')]/a[contains(.,'Activitats')]")));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'main-nav')]/ul[contains(@class,'nav')]/li[contains(@class,'btn_activitat')]/a[contains(.,'Activitats')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
-		if(!isElementPresent(By.xpath("//section[contains(@class,'blc_activitats')]/div[contains(@class,'span-4')]/div/div/div/div[contains(@class,'activities')]/div[contains(@class,'becaris-calendar')]/div[contains(@class,'clndr')]"), wait)){
+		if(!isElementPresent(By.xpath("//section[contains(@class,'blc_activitats')]/div[contains(@class,'span4')]/div/div/div/div[contains(@class,'activities')]/div[contains(@class,'becaris-calendar')]/div[contains(@class,'clndr')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Javascript calendar not found in 'Activitats' section");
 			error = true;
 		}
@@ -126,7 +126,7 @@ public class TestBecaris {
 		// Test case 6 :: Access to "Noticies" section and check for noticia icon
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 6 ::  Access to 'Noticies' section and check for noticia icon");
 		referer = driver.getCurrentUrl();
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'main-nav')]/ul[contains(@class,'nav')]/li[contains(@class,'btn_becari')]/a[contains(.,'Notícies')]")));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'main-nav')]/ul[contains(@class,'nav')]/li[contains(@class,'btn_noticies')]/a[contains(.,'Notícies')]")));
 		moveToElementAndClickIt(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
 		if(!isElementPresent(By.xpath("//div[contains(@class,'container-news')]/div[contains(@class,'row-newsmobile')]/article[contains(@class,'article-news-img')]/div[contains(@class,'icon_noticia_small')]"), wait)){
@@ -143,7 +143,7 @@ public class TestBecaris {
 		clickElementThroughJavascript(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
 		referer = driver.getCurrentUrl();
-		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@id, 'filtre-destUni')]/div[contains(@class, 'mCustomScrollBox')]/div[contains(@class,'mCSB_container')]/div[contains(@class, 'mensajes')]/div[contains(@class, 'texto')]/input[contains(@id,'destUni1327')]")));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@id, 'filtre-destUni')]/div[contains(@id,'mCSB_2')]/div[contains(@id,'mCSB_2_container')]/div[contains(@class, 'mensajes')]/div[contains(@class, 'texto')]/label[contains(@for,'destUni2118')]")));
 		// We are using JavaScript executor due to "Element is not clickable at point" error
 		clickElementThroughJavascript(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
@@ -156,7 +156,8 @@ public class TestBecaris {
 		System.out.println("[" + new Date(System.currentTimeMillis()) + "] INFO :: Test case 8 ::  Access to 'Ricardo Marticorena Alvarez' profile and check for 'B004236' image visible");
 		referer = driver.getCurrentUrl();
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[contains(@class,'blc_becaris_result')]/article[contains(@class,'becari')]/div[contains(@class,'content_box')]/div[contains(@class,'content')]/h3/a[contains(.,'Ricardo Marticorena Alvarez')]")));
-		moveToElementAndClickIt(element);
+		// We are using JavaScript executor due to "Element is not clickable at point" error
+		clickElementThroughJavascript(element);
 		System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] INFO :: Referer :: " + referer + " :: Current URL :: " + driver.getCurrentUrl());
 		if(!isElementPresentAndVisible(By.xpath("//div[contains(@class,'content-profile')]/div[contains(@class,'row-fluid')]/div[contains(@class,'span12')]/div[contains(@class,'span4')]/article[contains(@class,'content-avatar')]/img[contains(@src,'B004236')]"), wait)){
 			System.out.println("-- [" + new Date(System.currentTimeMillis()) + "] ERROR :: Image 'B004236' not vibile in 'Ricardo Marticorena Alvarez' profile");
