@@ -1,0 +1,30 @@
+##############################
+# Starting Test CaixaImpulse #
+##############################
+[Wed Jan 25 09:10:55 CET 2017] INFO :: Test case 1 :: Access to main page
+-- [Wed Jan 25 09:10:58 CET 2017] INFO :: Referer :: about:blank :: Current URL :: https://www.caixaimpulse.com/en/home
+[Wed Jan 25 09:10:58 CET 2017] INFO :: Test case 2 :: Access to 'Programme & Call > Overview' section and check li with 'Prototyping and design' value
+-- [Wed Jan 25 09:10:58 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/home :: Current URL :: https://www.caixaimpulse.com/en/programme?program_id=22450
+[Wed Jan 25 09:11:02 CET 2017] INFO :: Test case 3 :: Access to 'Programme & Call > Call for projects' section and check li with 'Call-Requirement-2' value
+-- [Wed Jan 25 09:11:02 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/programme?program_id=22450 :: Current URL :: https://www.caixaimpulse.com/programme?program_id=22450&program_section=CALL
+[Wed Jan 25 09:11:03 CET 2017] INFO :: Test case 4 :: Access to 'Programme & Call > Selected projects' section and check h3 with 'CerviScan' value
+-- [Wed Jan 25 09:11:04 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/programme?program_id=22450&program_section=CALL :: Current URL :: https://www.caixaimpulse.com/programme?program_id=22450&program_section=PROJECTS
+[Wed Jan 25 09:11:06 CET 2017] INFO :: Test case 5 :: Referer :: https://www.caixaimpulse.com/programme?program_id=22450&program_section=PROJECTS :: Access to 'Projects' section and check h3 with 'Novel leukemia therapy' value
+-- [Wed Jan 25 09:11:06 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/programme?program_id=22450&program_section=PROJECTS :: Current URL :: https://www.caixaimpulse.com/en/projects
+[Wed Jan 25 09:11:13 CET 2017] INFO :: Test case 6 :: Access to 'Novel leukemia therapy' project detail and check for image 'logo+centro.png'
+-- [Wed Jan 25 09:11:14 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/projects :: Current URL :: https://www.caixaimpulse.com/en/projects/-/caixaimpulse/project/49064
+[Wed Jan 25 09:11:14 CET 2017] INFO :: Test case 7 :: Access to 'Community > Participants' section and check for an element with 'Eduardo Rocon' value and access to 'Community > Mentors' section and check for an element with 'Roger Gomis' value
+-- [Wed Jan 25 09:11:14 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/projects/-/caixaimpulse/project/49064 :: Current URL :: https://www.caixaimpulse.com/en/community
+-- [Wed Jan 25 09:11:21 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/projects/-/caixaimpulse/project/49064 :: Current URL :: https://www.caixaimpulse.com/en/community
+[Wed Jan 25 09:11:21 CET 2017] INFO :: Test case 8 :: Access to 'News & events' section and check spans with 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs' or 'The 2016 CaixaImpulse Training Programme starts!' values
+-- [Wed Jan 25 09:11:21 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/community :: Current URL :: https://www.caixaimpulse.com/en/news-events
+[Wed Jan 25 09:11:28 CET 2017] INFO :: Test case 9 :: Access to 'The AEEC organises the 4th National Congress of Scientific Entrepreneurs' event detail and check for an element with 'CosmoCaixa Barcelona, Barcelona' value
+-- [Wed Jan 25 09:11:30 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/news-events :: Current URL :: https://www.caixaimpulse.com/en/news-events/-/caixaimpulse/event/55611
+[Wed Jan 25 09:11:30 CET 2017] INFO :: Test case 10 :: Access to 'The 2016 CaixaImpulse Training Programme starts!' news detail and check for an element with 'January 05, 2017' value
+-- [Wed Jan 25 09:11:35 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/news-events/-/caixaimpulse/event/55611 :: Current URL :: https://www.caixaimpulse.com/en/news-events/-/caixaimpulse/news/55552
+[Wed Jan 25 09:11:35 CET 2017] INFO :: Test case 11 :: Access to 'Apply' section
+-- [Wed Jan 25 09:11:36 CET 2017] INFO :: Referer :: https://www.caixaimpulse.com/en/news-events/-/caixaimpulse/news/55552 :: Current URL :: https://www.caixaimpulse.com/en/news-events/-/caixaimpulse/news/55552
+#############################
+# Test executed in 43765 ms #
+#  Test successful ? true  #
+#############################
