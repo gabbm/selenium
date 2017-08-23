@@ -23,4 +23,7 @@ apt-get -y install libasound2
 apt-get -y install libdbus-glib-1-2
 apt-get -y install libgtk-x11-2
 apt-get -y install libgtk2.0-0
+
+# install xvfb
+apt-get install xvfb
 exit
