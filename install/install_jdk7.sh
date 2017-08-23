@@ -1,6 +1,12 @@
 #! /bin/bash
 su -
 
+# Ubuntu alternative
+#sudo apt-get install software-properties-common
+#sudo add-apt-repository ppa:webupd8team/java
+#sudo apt-get update
+#sudo apt-get install oracle-java8-installer
+
 # Update repositories
 echo "Updating repositories"
 echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
