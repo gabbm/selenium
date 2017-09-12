@@ -42,6 +42,7 @@ public class TestRepteEmpren {
 		desiredCapabilities = DesiredCapabilities.firefox();
 		desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 	
+		System.setProperty("webdriver.firefox.bin", "/opt/firefox46/firefox-bin");
 		driver = new FirefoxDriver(desiredCapabilities);
 		baseUrl = "http://repteempren.educaixa.com";
 		
