@@ -44,6 +44,7 @@ public class TestBecaris {
 		desiredCapabilities = DesiredCapabilities.firefox();
 		desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 	
+		System.setProperty("webdriver.firefox.bin", "/opt/firefox46/firefox-bin");
 		driver = new FirefoxDriver(desiredCapabilities);
 		baseUrl = "https://becarislacaixa.net";
 		baseUrlES = "https://becarioslacaixa.net";
