@@ -42,6 +42,7 @@ public class TestSelenium {
 		desiredCapabilities = DesiredCapabilities.firefox();
 		desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 	
+		System.setProperty("webdriver.firefox.bin", "/opt/firefox46/firefox-bin");
 		driver = new FirefoxDriver(desiredCapabilities);
 		baseUrl = "https://www.caixaimpulse.com";
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
